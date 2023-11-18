@@ -1,4 +1,3 @@
-
 window.addEventListener("DOMContentLoaded", (event) => {
     const zipForm = document.getElementById('submitButton');
     if(zipForm){
@@ -11,8 +10,8 @@ console.log("hello");
 
 function zipSubmit() {
 
-    console.log("hello2);
-    let zipcode = document.getElementById("zipcode");
+    console.log("hello2");
+    const zipcode = document.getElementById("zipcode");
     
 
     if (zipcode.value == "") {
@@ -23,15 +22,24 @@ function zipSubmit() {
         
         console.log("hello3");
 
-       // fetch('')
-       // .then(response => response.json())
-        //.then(displayData)
+        geocode();
     }
 
        console.log("hello4");
 }
 
-
-//const displayData=(weather)=>{
-////    zipForm.innerText=
-//}
+function geocode() {
+    var zip = zipcode;
+    axios.get('https://maps.googleapis.com/maps/api/geocode/json',{
+        params:{
+            zipC:zip,
+            key:'AIzaSyATztl6ig1jRMMYpEjHk5l_T75JBr73EKU'
+        }
+    })
+    .then(function(response){
+        console.long(response);
+    })
+    .catch(function(error){
+        console.log("not valid zipcode");
+    });
+}
