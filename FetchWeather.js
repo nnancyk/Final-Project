@@ -6,12 +6,13 @@ window.addEventListener("DOMContentLoaded", (event) => {
     }
 });
 
+const zipcode = document.getElementById("zipcode");
+
 console.log("hello");
 
 function zipSubmit() {
 
     console.log("hello2");
-    const zipcode = document.getElementById("zipcode");
     
 
     if (zipcode.value == "") {
@@ -22,24 +23,32 @@ function zipSubmit() {
         
         console.log("hello3");
 
-        geocode();
+        geocodeZip();
     }
 
        console.log("hello4");
 }
 
-function geocode() {
-    var zip = zipcode;
-    axios.get('https://maps.googleapis.com/maps/api/geocode/json',{
-        params:{
-            zipC:zip,
-            key:'AIzaSyATztl6ig1jRMMYpEjHk5l_T75JBr73EKU'
+function geocodeZip() {
+    console.log("geocode test");
+
+    var geocoder = new google.maps.Geocoder();
+    var lat = '';
+    var lang = '';
+
+    geocoder.geocode( {
+        componentRestrictions: {
+            country: 'IN',
+            postalCode: zipcode
         }
-    })
-    .then(function(response){
-        console.long(response);
-    })
-    .catch(function(error){
-        console.log("not valid zipcode");
+    }, function(results, status) {
+        if (status == google.maps.GeocoderStatusOK) {
+            lat = results[0].geometry.location.lat();
+            lang = results[0].geometry.location.lang();
+            console.log(lat, lang);
+        }
+        else {
+            alert("Geocode was not successful because " + alert);
+        }
     });
 }
