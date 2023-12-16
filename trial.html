@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Page Title</title>
+		<title>Dress Geo</title>
 	</head>
 	<body>
 	<style>
 	body {
   		background-image: url('background.png');
 	}
+
 	.button {
   		border: none;
   		color: white;
@@ -24,7 +25,9 @@
   			background-color: white;
   			color: black;
   			border: 2px solid #04AA6D;
-			margin: -10% 19%;
+			margin: 1% 15%;
+			height: 25px;
+			width: 50px;
 		}
 
 		.button1:hover {
@@ -42,17 +45,96 @@
 		.button2:hover {
   			background-color: #008CBA;
   			color: white;
-		}
-		
+		}		
 		</style>
-		<form action="/action_page.php">
-  		<label for="fname">Zip Code: </label>
- 		<input type="text" id="fname" name="fname">
-	</form>
-		<iframe src="https://wikipedia.org" name="iframe_a" title="Iframe Example" style="height:90%;width:25%;position:absolute;top:32%;right:72%;"></iframe>
-		<iframe src="https://wikipedia.org" name="iframe_b" title="Iframe Example" style="height:90%;width:25%;position:absolute;top:32%;right:47%;"></iframe>
-		<iframe src="https://wikipedia.org" name="iframe_c" title="Iframe Example" style="height:90%;width:25%;position:absolute;top:32%;right:22%;"></iframe>
-		<button class="button button1">Go</button>
-		<button class="button button2">Refresh</button>
+		<script>
+			function updateOutfits() {
+				var weather = document.getElementById("weather").value;
+
+				var shirtsFrame = document.getElementById("iframe_shirts");
+				var pantsFrame = document.getElementById("iframe_pants");
+				var shoesFrame = document.getElementById("iframe_shoes");
+
+				var amazonBaseUrl = "https://www.amazon.com/s?k=";
+
+				var shirtsQuery = getSearchQuery(weather + " shirts");
+				var pantsQuery = getSearchQuery(weather + " pants");
+				var shoesQuery = getSearchQuery(weather + " shoes");
+
+				shirtsFrame.src = amazonBaseUrl + shirtsQuery;
+				pantsFrame.src = amazonBaseUrl + pantsQuery;
+				shoesFrame.src = amazonBaseUrl + shoesQuery;
+			}
+
+			function getSearchQuery(searchTerm) {
+				return encodeURIComponent(searchTerm);
+			}
+		</script>
+
+		<form id='zipCodeForm'>
+			<table rowspan="4" colspan="3" border = "0" style="width:100pc;height:100pc;" cellpadding ="0" cellspacing="0">
+				<tr colspan="3" style="height: 100px;">
+					<td>
+						<table rowspan="1" colspan="3" cellpadding ="0" cellspacing="0" border="0">
+							<tr>
+								<td>
+									<label id='nameLable' for='nameField'>Enter your zipcode:</label>			
+								</td>					
+								<td>
+									<input id='nameField' type='text' maxlength='5'></input>			
+								</td>
+								<td>
+									<button class="button1">Go</button>
+								</td>
+							</tr>
+						</table>						
+					</td>
+				</tr>
+				<tr colspan="3" style="height: 100px;">
+					<td>
+						<table rowspan="1" colspan="3" cellpadding ="0" cellspacing="0" border="0">
+							<tr>
+								<td>
+									<label id='nameLable2' for='nameField2'>Weather:</label>			
+								</td>					
+								<td>
+									<select name="weather" Id="weather">
+										<option value="cold">Cold</option>
+										<option value="warm">Warm</option>
+										<option value="hot">Hot</option>
+										<option value="rainy">Rainy</option>
+									</select>
+								</td>
+								<td>
+									<button class="button1" onclick="updateOutfits()">Go</button>
+								</td>
+							</tr>
+						</table>						
+					</td>
+				</tr>
+				<tr>
+					<td style="width:33pc;height: 50px;" align="center">
+						Shirts
+					</td>
+					<td style="width:33pc;height: 50px;" align="center">
+						Pants
+					</td>
+					<td style="height: 50px;" align="center">
+						Shoes
+					</td>
+				</tr>					
+				<tr>
+					<td>
+						<iframe name="iframe_shirts" id="iframe_shirts" src="amazon.com" style="height:100%; width:100%;border: 0px;"></iframe>
+					</td>
+					<td>
+						<iframe name="iframe_pants" id="iframe_pants" src="amazon.com" style="height:100%; width:100%;border: 0px;"></iframe>
+					</td>
+					<td>
+						<iframe name="iframe_shoes" id="iframe_shoes" src="amazon.com" style="height:100%; width:100%;border: 0px;"></iframe>
+					</td>
+				</tr>									
+			</table>
+		</form>		
 	</body>
 </html>
