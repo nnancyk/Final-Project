@@ -69,6 +69,30 @@
 			function getSearchQuery(searchTerm) {
 				return encodeURIComponent(searchTerm);
 			}
+
+			function updateBackground() {
+				var weather = document.getElementById("weather").value;
+
+				var body = document.body;
+
+				switch (weather) {
+					case "rainy":
+						body.style.backgroundImage = "url('RainyWeather.png')";
+						break;
+					case "warm":
+						body.style.backgroundImage = "url('background.png')";
+						break;
+					case "hot":
+						body.style.backgroundImage = "url('HotSky.png')";
+						break;
+					case "cold":
+						body.style.backgroundImage = "url('ColdWeather.png')";
+						break;
+					default:
+						body.style.backgroundImage = "url('background.png')";
+						break;
+				}
+			}
 		</script>
 
 		<form id='zipCodeForm'>
@@ -98,9 +122,9 @@
 									<label id='nameLable2' for='nameField2'>Weather:</label>			
 								</td>					
 								<td>
-									<select name="weather" Id="weather">
-										<option value="cold">Cold</option>
+									<select name="weather" Id="weather" onchange="updateBackground()">
 										<option value="warm">Warm</option>
+										<option value="cold">Cold</option>
 										<option value="hot">Hot</option>
 										<option value="rainy">Rainy</option>
 									</select>
@@ -113,13 +137,13 @@
 					</td>
 				</tr>
 				<tr>
-					<td style="width:33pc;height: 50px;" align="center">
+					<td style="width:33pc;height: 50px;font-weight: bold;" align="center">
 						Shirts
 					</td>
-					<td style="width:33pc;height: 50px;" align="center">
+					<td style="width:33pc;height: 50px;font-weight: bold;" align="center">
 						Pants
 					</td>
-					<td style="height: 50px;" align="center">
+					<td style="height: 50px;font-weight: bold;" align="center">
 						Shoes
 					</td>
 				</tr>					
