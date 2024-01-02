@@ -95,6 +95,11 @@
 			}
 		</script>
 
+        <script type="text/javascript" src="./FetchWeather.js"></script>
+
+        <input type = "number" id = "zipcode" placeholder = "Enter Zipcode">
+        <button type="submit" id = "submitButton" onclick="zipSubmit()">Find</button> 
+
 		<form id='zipCodeForm'>
 			<table rowspan="4" colspan="3" border = "0" style="width:100pc;height:100pc;" cellpadding ="0" cellspacing="0">
 				<tr colspan="3" style="height: 100px;">
@@ -102,6 +107,7 @@
 						<table rowspan="1" colspan="3" cellpadding ="0" cellspacing="0" border="0">
 							<tr>
 								<td>
+                                				<!--
 									<label id='nameLable' for='nameField'>Enter your zipcode:</label>			
 								</td>					
 								<td>
@@ -109,11 +115,14 @@
 								</td>
 								<td>
 									<button class="button1">Go</button>
-								</td>
+								</td> -->
 							</tr>
-						</table>						
+						</table>								
 					</td>
 				</tr>
+
+                <h2 id = "weatherData"></h2>
+
 				<tr colspan="3" style="height: 100px;">
 					<td>
 						<table rowspan="1" colspan="3" cellpadding ="0" cellspacing="0" border="0">
@@ -147,7 +156,7 @@
 						Shoes
 					</td>
 				</tr>					
-				<tr>
+				<tr> 
 					<td>
 						<iframe name="iframe_shirts" id="iframe_shirts" src="amazon.com" style="height:100%; width:100%;border: 0px;"></iframe>
 					</td>
