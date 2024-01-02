@@ -1,6 +1,4 @@
 window.addEventListener("DOMContentLoaded", (event) => {
-    console.log("hello");
-
     const submitButton = document.getElementById("submitButton");
     if(submitButton){
         submitButton.addEventListener("submit", zipSubmit);
@@ -32,10 +30,11 @@ function getWeatherData(zipcodeP) {
 
     console.log(`Current Temperature: ${temperature}F`);
     console.log(`Current Weather: ${description}`);
+
+    document.getElementById("weatherData").innerHTML = temperature + "F" +"\n" + description;
   })
   .catch(error => {
     console.error('Error fetching weather data:', error);
     alert('Error fetching weather data.');
   });
 }
-
