@@ -95,7 +95,7 @@
 			}
 		</script>
 
-        <script type="text/javascript" src="./FetchWeather.js"></script>
+        <script type="text/javascript" src="./ClothingRecommendation.js"></script>
 
         <input type = "number" id = "zipcode" placeholder = "Enter Zipcode">
         <button type="submit" id = "submitButton" onclick="zipSubmit()">Find</button> 
@@ -107,21 +107,23 @@
 						<table rowspan="1" colspan="3" cellpadding ="0" cellspacing="0" border="0">
 							<tr>
 								<td>
-                                				<!--
+									<!--
 									<label id='nameLable' for='nameField'>Enter your zipcode:</label>			
 								</td>					
 								<td>
 									<input id='nameField' type='text' maxlength='5'></input>			
 								</td>
 								<td>
-									<button class="button1">Go</button>
-								</td> -->
+									<button class="button1">Go</button> -->
+								</td>
 							</tr>
 						</table>								
 					</td>
 				</tr>
 
                 <h2 id = "weatherData"></h2>
+				<img id="weatherIcon" alt="icon">
+				<h2 id = "openAI"></h2>
 
 				<tr colspan="3" style="height: 100px;">
 					<td>
@@ -157,7 +159,7 @@
 					</td>
 				</tr>					
 				<tr> 
-					<td>
+					<td> <!--
 						<iframe name="iframe_shirts" id="iframe_shirts" src="amazon.com" style="height:100%; width:100%;border: 0px;"></iframe>
 					</td>
 					<td>
@@ -165,9 +167,9 @@
 					</td>
 					<td>
 						<iframe name="iframe_shoes" id="iframe_shoes" src="amazon.com" style="height:100%; width:100%;border: 0px;"></iframe>
-					</td>
+					</td> -->
 				</tr>									
 			</table>
-		</form>		
+		</form>
 	</body>
 </html>
