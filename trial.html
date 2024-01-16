@@ -51,19 +51,17 @@
 			function updateOutfits() {
 				var weather = document.getElementById("weather").value;
 
-				var shirtsFrame = document.getElementById("iframe_shirts");
-				var pantsFrame = document.getElementById("iframe_pants");
-				var shoesFrame = document.getElementById("iframe_shoes");
-
-				var amazonBaseUrl = "https://www.amazon.com/s?k=";
+				var googleShoppingUrl = "https://www.google.com/search?tbm=shop&tbs=mr:1,price:1,ppr_min:2,ppr_max:27&q=";
 
 				var shirtsQuery = getSearchQuery(weather + " shirts");
 				var pantsQuery = getSearchQuery(weather + " pants");
 				var shoesQuery = getSearchQuery(weather + " shoes");
 
+				alert(amazonBaseUrl + shirtsQuery);
 				shirtsFrame.src = amazonBaseUrl + shirtsQuery;
 				pantsFrame.src = amazonBaseUrl + pantsQuery;
 				shoesFrame.src = amazonBaseUrl + shoesQuery;
+
 			}
 
 			function getSearchQuery(searchTerm) {
@@ -95,58 +93,24 @@
 			}
 		</script>
 
-        <script type="text/javascript" src="./ClothingRecommendation.js"></script>
-
+        <script type="text/javascript" src="./FetchWeather.js"></script>
+	<h1>Weather Clothing Suggestions</h1>
+        
         <input type = "number" id = "zipcode" placeholder = "Enter Zipcode">
-        <button type="submit" id = "submitButton" onclick="zipSubmit()">Find</button> 
+        <button type="submit" id = "submitButton" onclick="zipSubmit()">Find</button>          
 
-		<form id='zipCodeForm'>
-			<table rowspan="4" colspan="3" border = "0" style="width:100pc;height:100pc;" cellpadding ="0" cellspacing="0">
-				<tr colspan="3" style="height: 100px;">
-					<td>
-						<table rowspan="1" colspan="3" cellpadding ="0" cellspacing="0" border="0">
-							<tr>
-								<td>
-									<!--
-									<label id='nameLable' for='nameField'>Enter your zipcode:</label>			
-								</td>					
-								<td>
-									<input id='nameField' type='text' maxlength='5'></input>			
-								</td>
-								<td>
-									<button class="button1">Go</button> -->
-								</td>
-							</tr>
-						</table>								
-					</td>
-				</tr>
+	<h2>Weather Description:</h2> <h2 id = "weatherData"></h2>
 
-                <h2 id = "weatherData"></h2>
-				<img id="weatherIcon" alt="icon">
-				<h2 id = "openAI"></h2>
-
-				<tr colspan="3" style="height: 100px;">
-					<td>
-						<table rowspan="1" colspan="3" cellpadding ="0" cellspacing="0" border="0">
-							<tr>
-								<td>
-									<label id='nameLable2' for='nameField2'>Weather:</label>			
-								</td>					
-								<td>
 									<select name="weather" Id="weather" onchange="updateBackground()">
 										<option value="warm">Warm</option>
 										<option value="cold">Cold</option>
 										<option value="hot">Hot</option>
 										<option value="rainy">Rainy</option>
 									</select>
-								</td>
-								<td>
-									<button class="button1" onclick="updateOutfits()">Go</button>
-								</td>
-							</tr>
-						</table>						
-					</td>
-				</tr>
+									<button class="button1" onclick="alert('tbd')">Go</button>
+
+		<form id='zipCodeForm'>
+			<table rowspan="4" colspan="3" border = "1" style="width:100pc;height:100pc;" cellpadding ="0" cellspacing="0">
 				<tr>
 					<td style="width:33pc;height: 50px;font-weight: bold;" align="center">
 						Shirts
@@ -157,19 +121,16 @@
 					<td style="height: 50px;font-weight: bold;" align="center">
 						Shoes
 					</td>
-				</tr>					
-				<tr> 
-					<td> <!--
-						<iframe name="iframe_shirts" id="iframe_shirts" src="amazon.com" style="height:100%; width:100%;border: 0px;"></iframe>
-					</td>
-					<td>
-						<iframe name="iframe_pants" id="iframe_pants" src="amazon.com" style="height:100%; width:100%;border: 0px;"></iframe>
-					</td>
-					<td>
-						<iframe name="iframe_shoes" id="iframe_shoes" src="amazon.com" style="height:100%; width:100%;border: 0px;"></iframe>
-					</td> -->
-				</tr>									
+				</tr>
+			        <tr id="clothing-suggestions">
+			            <!-- Clothing suggestions will be displayed here -->
+			        </tr>
 			</table>
-		</form>
+		</form>	
+
+		<p id = "ShirtsLink"></p>
+		<p id = "PantsLink"></p>
+		<p id = "ShoesLink"></p>
+	
 	</body>
 </html>
