@@ -27,10 +27,15 @@ function fetchWeather(zipcodeP) {
   .then(data => {
     const temp = data.main.temp;
     const descr = data.weather[0].description;
+    const iconID = data.weather[0].icon;
+    const iconUrl = `http://openweathermap.org/img/wn/${iconID}@2x.png`;
+    
     console.log(`Current Temperature: ${temp}F`);
     console.log(`Current Weather: ${descr}`);
-
-    document.getElementById("weatherData").innerHTML = temp + "F" +"\n" + descr;
+    console.log(`Weather icon: ${iconID}`);
+    
+    document.getElementById("weatherData").innerHTML = temp + "F" + descr;
+    document.getElementById('weatherIcon').src = iconUrl;
 
     //getRecommendation(temp, descr);
   })
