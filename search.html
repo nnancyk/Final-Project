@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Google Custom Search API Example</title>
+</head>
+<body>
+    <h1>Google Custom Search API Example</h1>
+    <button onclick="getImage()">Search Image</button>
+    <div id="imageResult"></div>
+    <button id="refreshButton0" style="display:none;" onclick="refresh(0)">Refresh Outerwear</button>
+    <button id="refreshButton1" style="display:none;" onclick="refresh(1)">Refresh Shoes</button>
+
+
+    <script>
+
+        const apiKey = 'AIzaSyCto-qUtmpIrQkpIH96ILduWLBb5_TvUbY';
+        const cx = 'c37d426998d0747bf';
+        
+        // hard code queries, 2 for now
+        var queries = ['buy green parka', 'buy white sneakers'];
+        var itemIndex = [0,0];
+        var dataArray = [];
+
+        function getImage() {
+            for (let queryIndex = 0; queryIndex < queries.length; queryIndex++) {
+                var query = queries[queryIndex];
+
+                const apiUrl = `https://www.googleapis.com/customsearch/v1?q=${query}&key=${apiKey}&cx=${cx}&searchType=image`;
+                console.log(apiUrl);
+
+                fetch(apiUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        dataArray[queryIndex] = data;
+                        displayImage(data.items[0]);
+                    })
+                .catch(error => console.error('Error fetching data:', error));
+
+                console.log("api called")
+
+                const refreshButton = document.getElementById('refreshButton' + queryIndex);
+                if (refreshButton) {
+                    refreshButton.style.display = 'block';
+                }
+            }
+            console.log(dataArray);
+        }
+
+        function displayImage(info) {
+            const imageResultDiv = document.getElementById('imageResult');
+            //imageResultDiv.innerHTML = '';
+
+            if (info) {
+                const imgElement = document.createElement('img');
+                imgElement.src = info.link;
+                imgElement.alt = info.title;
+                imgElement.style.maxWidth = '300px';
+                imgElement.style.margin = '10px';
+
+                imgElement.addEventListener('click', function () {
+                    window.open(info.image.contextLink, '_blank');
+                });
+
+                imageResultDiv.appendChild(imgElement);
+            } else {
+                imageResultDiv.innerText = 'No image found.';
+            }
+            
+        }
+
+        function refresh(buttonNum) {
+
+            /*if (button == 'outerwear') {
+                itemIndex[0] += 1;
+                displayImage(dataArray[0].items[itemIndex[0]]);
+            }
+
+            if (button == 'shoes') {
+                itemIndex[1] += 1;
+                displayImage(dataArray[1].items[itemIndex[1]]);
+            }*/
+
+            //delete image from before, in the table?
+            
+            itemIndex[buttonNum] += 1;
+            displayImage(dataArray[buttonNum].items[itemIndex[buttonNum]]);
+        }
+    </script>
+</body>
+</html>
+
