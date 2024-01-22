@@ -54,14 +54,15 @@ function fetchWeather(zipcodeP) {
 async function getRecommendation(tempP, descrP) {
   const question = "The weather is " + tempP + " degrees F and " + descrP + 
   ". Give me 1 outerwear, 1 top, 1 bottom, and 1 shoe recommendation." +
-   "Format like this: outerwear: heavy down jacket. Don't use 'or'";
+   "Format like this: outerwear: heavy down jacket. Don't use 'or '";
 
   if (!question) {
       alert('Prompt error.');
       return;
   }
 
-  const apiKey = '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';
+  //replace with key after download, open ai doesn't allow keys to be on github
+  const apiKey = '';
   const apiUrl = 'https://api.openai.com/v1/chat/completions';
   var response;
   const data = {
