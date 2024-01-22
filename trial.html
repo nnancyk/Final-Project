@@ -51,17 +51,19 @@
 			function updateOutfits() {
 				var weather = document.getElementById("weather").value;
 
-				var googleShoppingUrl = "https://www.google.com/search?tbm=shop&tbs=mr:1,price:1,ppr_min:2,ppr_max:27&q=";
+				var shirtsFrame = document.getElementById("iframe_shirts");
+				var pantsFrame = document.getElementById("iframe_pants");
+				var shoesFrame = document.getElementById("iframe_shoes");
+
+				var amazonBaseUrl = "https://www.amazon.com/s?k=";
 
 				var shirtsQuery = getSearchQuery(weather + " shirts");
 				var pantsQuery = getSearchQuery(weather + " pants");
 				var shoesQuery = getSearchQuery(weather + " shoes");
 
-				alert(amazonBaseUrl + shirtsQuery);
 				shirtsFrame.src = amazonBaseUrl + shirtsQuery;
 				pantsFrame.src = amazonBaseUrl + pantsQuery;
 				shoesFrame.src = amazonBaseUrl + shoesQuery;
-
 			}
 
 			function getSearchQuery(searchTerm) {
@@ -93,41 +95,52 @@
 			}
 		</script>
 
-        <script type="text/javascript" src="./ClothingRecommendation.js"></script>
-	<h1>Weather Clothing Suggestions</h1>
-        
+        <script src="ClothingRecommendation.js"></script>
+		<h1>Geo Dresser</h1>
+
         <input type = "number" id = "zipcode" placeholder = "Enter Zipcode">
-        <button type="submit" id = "submitButton" onclick="zipSubmit()">Find</button>          
+        <button type="button" id = "submitButton" onclick="zipSubmit()">Find</button>
 
-	<h2>Weather Description:</h2> <h2 id = "weatherData"></h2>
-	<img id="weatherIcon" alt="icon">
-	<h2 id = "openAI"></h2>
-									<select name="weather" Id="weather" onchange="updateBackground()">
-										<option value="warm">Warm</option>
-										<option value="cold">Cold</option>
-										<option value="hot">Hot</option>
-										<option value="rainy">Rainy</option>
-									</select>
-									<button class="button1" onclick="alert('tbd')">Go</button>
+		<h2>Weather:</h2>
+		<h3 id = "city"></h3>
+		<h3 id = "weatherData"></h3>
+		<img id="weatherIcon" alt="icon" style="display:none;">
+		<h2>Recommendations:</h2> 
+		<h3 id = "openAI"></h3>
 
-		<form id='zipCodeForm'>
+		<select name="weather" Id="weather" onchange="updateBackground()">
+			<option value="warm">Warm</option>
+			<option value="cold">Cold</option>
+			<option value="hot">Hot</option>
+			<option value="rainy">Rainy</option>
+		</select>
+		<button class="button1" onclick="alert('tbd')">Go</button>
+
+		<button id="refreshAll" style="display:none;" onclick="refreshAll()">Refresh All</button>
+
 			<table rowspan="4" colspan="3" border = "1" style="width:100pc;height:100pc;" cellpadding ="0" cellspacing="0">
 				<tr>
-					<td style="width:33pc;height: 50px;font-weight: bold;" align="center">
-						Shirts
+					<td style="width: 30pc;height: 50px;font-weight: bold;" align="center"> Outerwear
+						<div id="imageResult0"></div>
+                		<button id="refreshButton0" style="display:none;" onclick="refresh(0)">Refresh Outerwear</button>
 					</td>
-					<td style="width:33pc;height: 50px;font-weight: bold;" align="center">
-						Pants
+					<td style="width: 30pc;height: 50px;font-weight: bold;" align="center"> Top
+						<div id="imageResult1"></div>
+						<button id="refreshButton1" style="display:none;" onclick="refresh(1)">Refresh Top</button>
 					</td>
-					<td style="height: 50px;font-weight: bold;" align="center">
-						Shoes
+					<td style="width: 30pc;height: 50px;font-weight: bold;" align="center"> Pant
+						<div id="imageResult2"></div>
+                		<button id="refreshButton2" style="display:none;" onclick="refresh(2)">Refresh Pant</button>
+					</td>
+					<td style="width: 30pc;height: 50px;font-weight: bold;" align="center"> Shoes
+						<div id="imageResult3"></div>
+                		<button id="refreshButton3" style="display:none;" onclick="refresh(3)">Refresh Shoes</button>
 					</td>
 				</tr>
 			        <tr id="clothing-suggestions">
 			            <!-- Clothing suggestions will be displayed here -->
 			        </tr>
-			</table>
-		</form>	
+			</table>	
 
 		<p id = "ShirtsLink"></p>
 		<p id = "PantsLink"></p>
