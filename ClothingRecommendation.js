@@ -61,7 +61,7 @@ async function getRecommendation(tempP, descrP) {
       return;
   }
 
-  const apiKey = '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';
+  const apiKey = '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';
   const apiUrl = 'https://api.openai.com/v1/chat/completions';
   var response;
   const data = {
