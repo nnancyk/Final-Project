@@ -40,6 +40,8 @@ function fetchWeather(zipcodeP) {
     document.getElementById("weatherData").innerHTML = temp + "F, " + descr;
     document.getElementById('weatherIcon').src = iconUrl;
     
+    document.getElementById('selectedWeather').value = descr;
+
     const weatherIcon = document.getElementById('weatherIcon');
     weatherIcon.style.display = 'block';
 
@@ -62,7 +64,7 @@ async function getRecommendation(tempP, descrP) {
   }
 
   //replace with key after download, open ai doesn't allow keys to be on github
-  const apiKey = '';
+  const apiKey = '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';
   const apiUrl = 'https://api.openai.com/v1/chat/completions';
   var response;
   const data = {
