@@ -1,9 +1,21 @@
+<!-- 
+	Ananya Suthram and Nancy Kim
+	1/24/2024
+
+	trial.html is the frontend file for Geo Dresser project.
+  	This program takes user input of their zip code, or for custom weather for which
+  	they need outfit reccomendations. The responses from the backend APIs are formatted
+  	and displayed.
+ -->
+
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Dress Geo</title>
+		<title>Geo Dresser</title>
 	</head>
 	<body>
+	
+	<!--style sheets for website background and buttons -->
 	<style>
 	body {
   		background-image: url('background.png');
@@ -34,96 +46,28 @@
   			background-color: #04AA6D;
   			color: white;
 		}
-
-		.button2 {
-  			background-color: white;
-  			color: black;
-  			border: 2px solid #008CBA;
-			margin: 20% 85%;
-				}
-
-		.button2:hover {
-  			background-color: #008CBA;
-  			color: white;
-		}		
+		
 		</style>
-		<script>
-			function updateOutfits() {
-				var city = 'custom-weather'
-				var weather = document.getElementById("weather").value;
-				var temperature = document.getElementById("temperature").value;
+		
+		<!-- Link the Javascript file to HTML file -->
+		<script src="ClothingRecommendation.js"></script>
 
-
-				console.log(`City: ${city}`);
-				console.log(`Current Temperature: ${temperature}F`);
-				console.log(`Current Weather: ${weather}`);
-				//console.log(`Weather icon: ${iconID}`);
-				
-				document.getElementById("city").innerHTML = city;
-				document.getElementById("weatherData").innerHTML = temperature + "F, " + weather;
-				//document.getElementById('weatherIcon').src = iconUrl;
-				
-				//const weatherIcon = document.getElementById('weatherIcon');
-				//weatherIcon.style.display = 'block';
-
-				document.getElementById('selectedWeather').value = weather;
-
-				getRecommendation(temperature, weather);
-			}
-
-			function getSearchQuery(searchTerm) {
-				return encodeURIComponent(searchTerm);
-			}
-
-			function openGoogleShopping(outfitType) {
-				const outfitMinPrice = 'minPrice_' + outfitType;
-				const outfitMaxPrice = 'maxPrice_' + outfitType;
-
-				const selectedWeatherDescription = document.getElementById('selectedWeather').value
-
-				const minPrice = document.getElementById(outfitMinPrice).value;
-	            const maxPrice = document.getElementById(outfitMaxPrice).value;
-				var googleShoppingLink = "https://www.google.com/search?tbm=shop&tbs=mr:1,price:1";
-
-				if (minPrice !== '') {
-					googleShoppingLink = googleShoppingLink + ',ppr_min:' + minPrice;
-				}
-
-				if (maxPrice !== '') {
-					googleShoppingLink = googleShoppingLink + ',ppr_max:' + maxPrice;
-				}
-
-				var shopForQuery = getSearchQuery(selectedWeatherDescription + " weather " + outfitType);
-
-				googleShoppingLink = googleShoppingLink + '&q=' + shopForQuery;
-
-				// sample google shopping link, searching for Watch for min price of 2 and max price od 27
-				//var googleShoppingLink = "https://www.google.com/search?tbm=shop&tbs=mr:1,price:1,ppr_min:2,ppr_max:27&q=watch";
-
-				// make sure to allow popups on the page
-				window.open(googleShoppingLink, '_blank');
-
-			}
-		</script>
-
-        <script src="ClothingRecommendation.js"></script>
 		<h1>Geo Dresser</h1>
 
 		<table>
 			<tr>
 				<td>
+					<!-- Zipcode input -->
 					<input type = "number" id = "zipcode" placeholder = "Enter Zipcode">
 				</td>
 				<td>
 					<button type="button" id = "submitButton" onclick="zipSubmit()">Find</button>
 				</td>
 				<td>
-					<bold>Or</bold>
+					OR Choose your weather:
 				</td>
 				<td>
-					Choose your weather:
-				</td>
-				<td>
+					<!-- Hypothetical weather pattern dropdown selection -->
 					<select name="weather" Id="weather">
 						<option value="Thunderstorm">Thunderstorm</option>
 						<option value="Drizzle">Drizzle</option>
@@ -132,111 +76,21 @@
 						<option value="Clear">Clear</option>
 						<option value="Clouds">Clouds</option>
 					</select>
+					<!-- Hypothetical temperature dropdown selection -->
 					and Temperature:
 					<select name="temperature" Id="temperature">
-						<option value="-1">Below 0</option>
-						<option value="0">0</option>
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-						<option value="6">6</option>
-						<option value="7">7</option>
-						<option value="8">8</option>
-						<option value="9">9</option>
-						<option value="10">10</option>
-						<option value="11">11</option>
-						<option value="12">12</option>
-						<option value="13">13</option>
-						<option value="14">14</option>
-						<option value="15">15</option>
-						<option value="16">16</option>
-						<option value="17">17</option>
-						<option value="18">18</option>
-						<option value="19">19</option>
-						<option value="20">20</option>
-						<option value="21">21</option>
-						<option value="22">22</option>
-						<option value="23">23</option>
-						<option value="24">24</option>
-						<option value="25">25</option>
-						<option value="26">26</option>
-						<option value="27">27</option>
-						<option value="28">28</option>
-						<option value="29">29</option>
-						<option value="30">30</option>
-						<option value="31">31</option>
-						<option value="32">32</option>
-						<option value="33">33</option>
-						<option value="34">34</option>
-						<option value="35">35</option>
-						<option value="36">36</option>
-						<option value="37">37</option>
-						<option value="38">38</option>
-						<option value="39">39</option>
-						<option value="40">40</option>
-						<option value="41">41</option>
-						<option value="42">42</option>
-						<option value="43">43</option>
-						<option value="44">44</option>
-						<option value="45">45</option>
-						<option value="46">46</option>
-						<option value="47">47</option>
-						<option value="48">48</option>
-						<option value="49">49</option>
-						<option value="50">50</option>
-						<option value="51">51</option>
-						<option value="52">52</option>
-						<option value="53">53</option>
-						<option value="54">54</option>
-						<option value="55">55</option>
-						<option value="56">56</option>
-						<option value="57">57</option>
-						<option value="58">58</option>
-						<option value="59">59</option>
-						<option value="60">60</option>
-						<option value="61">61</option>
-						<option value="62">62</option>
-						<option value="63">63</option>
-						<option value="64">64</option>
-						<option value="65">65</option>
-						<option value="66">66</option>
-						<option value="67">67</option>
-						<option value="68">68</option>
-						<option value="69">69</option>
-						<option value="70">70</option>
-						<option value="71">71</option>
-						<option value="72">72</option>
-						<option value="73">73</option>
-						<option value="74">74</option>
-						<option value="75">75</option>
-						<option value="76">76</option>
-						<option value="77">77</option>
-						<option value="78">78</option>
-						<option value="79">79</option>
-						<option value="80">80</option>
-						<option value="81">81</option>
-						<option value="82">82</option>
-						<option value="83">83</option>
-						<option value="84">84</option>
-						<option value="85">85</option>
-						<option value="86">86</option>
-						<option value="87">87</option>
-						<option value="88">88</option>
-						<option value="89">89</option>
-						<option value="90">90</option>
-						<option value="91">91</option>
-						<option value="92">92</option>
-						<option value="93">93</option>
-						<option value="94">94</option>
-						<option value="95">95</option>
-						<option value="96">96</option>
-						<option value="97">97</option>
-						<option value="98">98</option>
-						<option value="99">99</option>
-						<option value="100">100</option>
-						<option value="101">Above 100</option>
+						<option value="Below 0">Below 0</option>
+						<option value="0 - 10">0 - 10</option>
+						<option value="11 - 20">11 - 20</option>
+						<option value="21 - 30">21 - 30</option>
+						<option value="31 - 40">31 - 40</option>
+						<option value="41 - 50">41 - 50</option>
+						<option value="51 - 60">51 - 60</option>
+						<option value="61 - 70">61 - 70</option>
+						<option value="71 - 80">71 - 80</option>
+						<option value="81 - 90">81 - 90</option>
+						<option value="91 - 100">91 - 100</option>
+						<option value="Above 100">Above 100</option>
 					</select> F
 				</td>
 				<td>
@@ -245,15 +99,19 @@
 			</tr>
 		</table>
 
+		<!-- HTML elements to display weather information -->
 		<h2>Weather:</h2>
 		<h3 id = "city"></h3>
 		<h3 id = "weatherData"></h3>
 		<img id="weatherIcon" alt="icon" style="display:none;">
+		<!-- HTML element to display outfit recoomendations from OpenAI API -->
 		<h2>Recommendations:</h2> 
 		<h3 id = "openAI"></h3>
-
+		
+		<!-- Refresh all clothing options to refresh reccomendation -->
 		<button id="refreshAll" style="display:none;" onclick="refreshAll()">Refresh All</button>
 
+		<!-- Table to hold clothing catagories -->
 		<table rowspan="4" colspan="3" border = "1" cellpadding ="0" cellspacing="0">
 			<tr>
 				<td style="width: 25pc;height: 50px;font-weight: bold;text-align: center;"> Outerwear
@@ -276,6 +134,7 @@
 					&nbsp;<br/>&nbsp;
 					<button id="refreshButton3" style="display:none;" onclick="refresh(3)">Refresh Shoes</button>&nbsp;<br/>&nbsp;
 				</td>
+			<!-- Rows to hold price ranges -->
 			</tr>
 				<tr style="font-weight: bold;text-align: center;">
 					<td>
@@ -321,3 +180,4 @@
 		<input type="hidden" id="selectedWeather" value="">
 	</body>
 </html>
+<!-- End of Code -->

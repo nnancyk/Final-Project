@@ -1,5 +1,5 @@
 /*
-  Nancy Kim
+  Nancy Kim and Ananya Suthram
   1/19/2024
 
   ClothingRecommendation.js is the backend file for Geo Dresser project.
@@ -87,7 +87,7 @@ async function getRecommendation(tempP, descrP) {
       return;
   }
 
-  const apiKey = '';
+  const apiKey = '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';
   const apiUrl = 'https://api.openai.com/v1/chat/completions';
   var response;
 
@@ -254,3 +254,76 @@ function refreshAll() {
     refresh(queryIndex);
   }
 }
+
+/*
+  updateOutfits() function updates the weather information
+  as selected by the user and calls getRecommendation() function with the weather data.
+*/
+function updateOutfits() {
+  // variables to store input or HTML element values
+  var city = 'custom-weather'
+  var weather = document.getElementById("weather").value;
+  var temperature = document.getElementById("temperature").value;
+
+  // logging information to console
+  console.log(`City: ${city}`);
+  console.log(`Current Temperature: ${temperature}F`);
+  console.log(`Current Weather: ${weather}`);
+ 
+  // update display
+  document.getElementById("city").innerHTML = city;
+  document.getElementById("weatherData").innerHTML = temperature + "F, " + weather;
+  
+  // update selected weather to use in search later
+  document.getElementById('selectedWeather').value = weather;
+
+  // function call to get outfit reccomendations
+  getRecommendation(temperature, weather);
+}
+
+/*
+  getSearchQuery function to encode URI component to use in the links
+*/
+function getSearchQuery(searchTerm) {
+  return encodeURIComponent(searchTerm);
+}
+
+/*
+  openGoogleShopping function to launch google shopping link for similar outfit reccomendation.
+  This function also considers the price range
+*/
+function openGoogleShopping(outfitType) {
+  // get the min and max price element names for outfit
+  const outfitMinPrice = 'minPrice_' + outfitType;
+  const outfitMaxPrice = 'maxPrice_' + outfitType;
+
+  // get the selected weather to use in the search
+  const selectedWeatherDescription = document.getElementById('selectedWeather').value
+  // get the min and max price for the outfit
+  const minPrice = document.getElementById(outfitMinPrice).value;
+  const maxPrice = document.getElementById(outfitMaxPrice).value;
+
+  var googleShoppingLink = "https://www.google.com/search?tbm=shop&tbs=mr:1,price:1";
+
+  // if min price given, append to the link
+  if (minPrice !== '') {
+    googleShoppingLink = googleShoppingLink + ',ppr_min:' + minPrice;
+  }
+
+  // if max price given, append to the link
+  if (maxPrice !== '') {
+    googleShoppingLink = googleShoppingLink + ',ppr_max:' + maxPrice;
+  }
+
+  // append the URI encoded weather description to the link
+  var shopForQuery = getSearchQuery(selectedWeatherDescription + " weather " + outfitType);
+
+  googleShoppingLink = googleShoppingLink + '&q=' + shopForQuery;
+
+  // sample google shopping link, searching for Watch for min price of 2 and max price od 27
+  //var googleShoppingLink = "https://www.google.com/search?tbm=shop&tbs=mr:1,price:1,ppr_min:2,ppr_max:27&q=watch";
+
+  // make sure to allow popups on the page
+  window.open(googleShoppingLink, '_blank');
+}
+// End of Code
