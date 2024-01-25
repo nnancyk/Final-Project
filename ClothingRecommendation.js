@@ -160,7 +160,7 @@ var dataArray = [];
   The function calls displayImage() with the data of the image.
 */
 function searchImages(queries) {
-  const apiKey = 'AIzaSyCto-qUtmpIrQkpIH96ILduWLBb5_TvUbY';
+  const apiKey = '';
   const cx = 'c37d426998d0747bf';
 
   // API called for each clothing item in the array of queries
