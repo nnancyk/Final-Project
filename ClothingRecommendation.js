@@ -87,7 +87,7 @@ async function getRecommendation(tempP, descrP) {
       return;
   }
 
-  const apiKey = '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 ';
+  const apiKey = '';
   const apiUrl = 'https://api.openai.com/v1/chat/completions';
   var response;
 
@@ -160,7 +160,7 @@ var dataArray = [];
   The function calls displayImage() with the data of the image.
 */
 function searchImages(queries) {
-  const apiKey = '';
+  const apiKey = 'AIzaSyCto-qUtmpIrQkpIH96ILduWLBb5_TvUbY';
   const cx = 'c37d426998d0747bf';
 
   // API called for each clothing item in the array of queries
